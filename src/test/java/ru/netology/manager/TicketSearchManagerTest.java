@@ -20,6 +20,8 @@ class TicketSearchManagerTest {
     private Ticket fifthTicket = new Ticket(5, 1890, "KUF", "EGO", 95);
     private Ticket sixthTicket = new Ticket(6, 2143, "DME", "OGZ", 85);
     private Ticket seventhTicket = new Ticket(7, 1946, "KUF", "EGO", 95);
+    private Ticket eighthTicket = new Ticket(8, 2155, "KUF", "EGO", 93);
+    private Ticket ninthTicket = new Ticket(9, 1993, "KUF", "EGO", 105);
 
 
     @BeforeEach
@@ -31,18 +33,20 @@ class TicketSearchManagerTest {
         manager.add(fifthTicket);
         manager.add(sixthTicket);
         manager.add(seventhTicket);
+        manager.add(eighthTicket);
+        manager.add(ninthTicket);
     }
 
     @Test
     void shouldGetAll() {
-        Ticket[] expected = new Ticket[]{firstTicket, secondTicket, thirdTicket, forthTicket, fifthTicket, secondTicket, seventhTicket};
-        Ticket[] actual = manager.findAll("DME", "EGO");
-        assertNotEquals(expected, actual);
+        Ticket[] tickets = new Ticket[]{seventhTicket, firstTicket, ninthTicket, eighthTicket, thirdTicket, forthTicket, secondTicket, fifthTicket, secondTicket};
+        Ticket[] result = manager.findAll("DME", "EGO");
+        assertNotEquals(tickets, result);
     }
 
     @Test
     void shouldSearchCostBy() {
-        Ticket[] tickets = new Ticket[]{firstTicket, thirdTicket, fifthTicket, seventhTicket};
+        Ticket[] tickets = new Ticket[]{ninthTicket, firstTicket, thirdTicket, eighthTicket, fifthTicket, seventhTicket};
         Ticket[] result = manager.findAll("KUF", "EGO");
         Arrays.sort(tickets);
         assertArrayEquals(tickets, result);
